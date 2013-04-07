@@ -71,9 +71,16 @@ Instalacja
  rozwiazanie warto zastosowac na serwerze produkcyjnym.
 
 
-Konfiguracja serwera
+
+Tworzenie nowego projektu / aplikacji
 -----------------
 
+TODO: opisz
+
+
+
+Konfiguracja serwera
+-----------------
 
  *`UWAGA: mozesz pominac ten krok, jezeli zrobiles to w poprzedniej instalacji pakietu symfony2.2-starter`*
 
@@ -105,6 +112,14 @@ terminalu:
 
         sudo a2enmod rewrite
         sudo service apache2 restart
+
+
+
+Aplikacje i system Bundle'i
+-----------------
+
+TODO: opisac jak to jest z kilkoma aplikacjami projaktami
+
 
 
 Konfiguracja VirtualHost
@@ -160,4 +175,4 @@ TODO: linki symboliczne (dowiazania) i windows
 
 TODO: zdefiniuj licencje; wymien licencje poszczeglnych paczek
 
-TODO: composer lubi sobie pozmieniac sciezki w autoload_classmap.php
+TODO: composer.json - warto pododawac jakies stabilne wersje bo ciagnie paczki spoza cache i jest wolniej

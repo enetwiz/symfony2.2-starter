@@ -1,3 +1,5 @@
+TODO: zrobic koniecznie - wiele aplikacji na jednym SF2: http://jolicode.com/blog/multiple-applications-with-symfony2
+
 TODO: zrobieniu do tego skryptu instalacyjnego? sprawdzającego wymagania i wykonującego zdania instalacyjne?
 
 TODO:
