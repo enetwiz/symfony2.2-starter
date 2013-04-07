@@ -8,6 +8,7 @@ class AppKernel extends Kernel
     public function registerBundles()
     {
         $bundles = array(
+            
             // Symfony Standard Edition
             new Symfony\Bundle\FrameworkBundle\FrameworkBundle(),
             new Symfony\Bundle\SecurityBundle\SecurityBundle(),
@@ -20,16 +21,20 @@ class AppKernel extends Kernel
             new JMS\AopBundle\JMSAopBundle(),
             new JMS\DiExtraBundle\JMSDiExtraBundle($this),
             new JMS\SecurityExtraBundle\JMSSecurityExtraBundle(),
-            // Quick project starter pack
+            
+            // Quick project starter pack (extended the Symfony Standard Edition pack)
             new FOS\UserBundle\FOSUserBundle(),
             new Knp\Bundle\MenuBundle\KnpMenuBundle(),
-            new Application\Sonata\UserBundle\ApplicationSonataUserBundle(),
             new Sonata\BlockBundle\SonataBlockBundle(),
             new Sonata\jQueryBundle\SonatajQueryBundle(),
             new Sonata\AdminBundle\SonataAdminBundle(),
             new Sonata\DoctrineORMAdminBundle\SonataDoctrineORMAdminBundle(),
             new Sonata\UserBundle\SonataUserBundle('FOSUserBundle'),
-            new Sonata\EasyExtendsBundle\SonataEasyExtendsBundle()
+            new Sonata\EasyExtendsBundle\SonataEasyExtendsBundle(),
+            
+            // Custom project bundles and applications
+            new Application\Sonata\UserBundle\ApplicationSonataUserBundle(),
+            
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
