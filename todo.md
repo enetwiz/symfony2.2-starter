@@ -15,3 +15,5 @@ EOF TODO
 TODO: zainstaluj > https://packagist.org/packages/doctrine/doctrine-fixtures-bundle
 
 TODO: zainstaluj initializr
+
+TODO: cos nie dziala httaccess
