@@ -61,7 +61,7 @@
     },
     "minimum-stability": "dev",
     "extra": {
-        "symfony-app-dir": "app",
+        "symfony-app-dir": "project1",
         "symfony-web-dir": "web"
     }
 }
