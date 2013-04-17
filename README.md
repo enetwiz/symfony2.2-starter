@@ -1,6 +1,7 @@
 Symfony2 (2.2) - instalacja bazowa
 ==================================
 
+*`UWAGA: instrukcja jest w trakcie aktualizacji`*
 
 
 Czym jest instalacja bazowa?
