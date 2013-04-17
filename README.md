@@ -1,89 +1,91 @@
 Symfony2 (2.2) - instalacja bazowa
-======
+==================================
 
-**UWAGA: instrukcja jest w trakcie aktualizacji**
+
 
 Czym jest instalacja bazowa?
------------------
+----------------------------
 
 Celem niniejszego pakietu jest umożliwienie szybkiego utworzenia nowego projektu Symfony 2.2 wraz z podstawowymi 
 pakietami i bibliotekami jakimi jak:
 
  * jQuery - popularna biblioteka JS (domyslnie jest jednak ladowana z Google CDN)
  
- * Initializr - pakiet startowy dla projektow HTML5 :: [http://www.initializr.com](http://www.initializr.com)
+ * / wkrótce / Initializr - pakiet startowy dla projektow HTML5 :: [http://www.initializr.com](http://www.initializr.com)
  
- * TwitterBoostrap :: bundle [BraincraftedBootstrapBundle](http://bootstrap.braincrafted.com)
+ * TwitterBoostrap :: bundle [BraincraftedBootstrapBundle](http://bootstrap.braincrafted.com) + kompilator NodeJs
 
  * SonataAdminBundle - [panel administracyjny](http://sonata-project.org/bundles/admin/master/doc/index.html) wraz z 
    obsluga ORM Doctrine
 
- * FOSUserBundle - [moduł zarządzania użytkownikami](https://github.com/FriendsOfSymfony/FOSUserBundle) (logowanie, edycja konta, uprawnienia)
+ * FOSUserBundle - [moduł zarządzania użytkownikami](https://github.com/FriendsOfSymfony/FOSUserBundle) (logowanie, 
+   edycja konta, uprawnienia)
  
  * Composer - narzędzie do zarządzania zależnościami (przypomina nieco PEAR)
  
-Dodatkowa wlasciwoscia instalacji bazowej jest wyodrebnienie podstawowych bibliotek (bundle'i) Symfony2 poza katalog, 
-w ktorym docelowo bedzie znajdowac sie nasz projekt. W instrukcji zawarta beda rowniez podpowiedzi dotyczace instalacji 
-Nodejs (kompilatora plikow LESS), a takze opis konfiguracji serwera oraz najczesciej wystepujacych problemow zw. z 
-instalacja / uzyciem frameworka.
+Wazna wlasciwoscia instalacji bazowej jest wyodrebnienie bibliotek (bundle'i) Symfony2 poza katalog z projektami, dzieki 
+czemu mozna uzyskac wspoldzielenie klas w ramach tego samego serwera, przy okazji zwiekszajac efektywnosc dzialania
+akceleratorow PHP jak chociazby popularny APC. 
 
-Pakiet podstawowy zostal skonstruowany w taki sposob aby mozliwie najszybciej uzyskac gotowosc Frameworka do pracy bez 
-wykonywania zbednych czynnosci.
+W instrukcji zawarta jest rowniez podpowiedz dotyczaca instalacji i konfiguracji kompilatora Nodejs (kompilatora plikow 
+LESS), a takze opis konfiguracji serwera i wskazowki dotycz. najczesciej wystepujacych problemow zw. z instalacja / 
+uzyciem Symfony2.
+
+Pakiet podstawowy zostal tak skonstruowany aby mozliwie najszybciej uzyskac gotowosc Frameworka do pracy bez wykonywania 
+standardowych czynnosci.
 
 Wszystkie omawiane w instrukcji czynnosci i polecenia byly wykonywane na systemie *nixowym.
 
 
+
 Wymagania
------------------
+---------
 
  * zainstalowany serwer Apache 2.2 + PHP 5.3+ + MySQL 5.x ( zalecam pakiet LAMP ) :: patrz 
    [https://help.ubuntu.com/community/ApacheMySQLPHP](https://help.ubuntu.com/community/ApacheMySQLPHP)
 
- * [ opcjonalnie ] zainstalowany pakiet GIT - system kontroli wersji :: instalujemy poleceniem w terminalu
+ * zainstalowany pakiet GIT - system kontroli wersji :: instalujemy poleceniem w terminalu
 
         sudo apt-get install git
+
+ * zainstalowana biblioteka curl
+
+        sudo apt-get install curl
             
             
-Instalacja
------------------
+Instalacja przy uzyciu Composer'a
+---------------------------------
 
- 1. [Pobierz najnowsza wersje](https://github.com/MaxRipper/symfony2.2-starter/archive/master.zip) i zapisz ja w katalogu 
-    www serwera
- 
- 2. Rozpakuj archiwum i zmien domyslna nazwe katalogu 
+    *`UWAGA: mozesz pominac te sekcje, jezeli zrobiles to w poprzedniej instalacji pakietu symfony2.2-starter`*
+
+
+ 1. Pobieramy i instalujemy system zarządzania zależnościami Composer ( np. w katalogu www: `/var/www/` )
     
-        sudo unzip symfony2.2-starter-master.zip
-        sudo mv symfony2.2-starter-master nowy_projekt
+        cd /var/www/
+        curl -s https://getcomposer.org/installer | php
+
+    *`UWAGA: jezeli nie posiadasz uprawnien do operacji na danych w katalogach poza Twoim katalogiem domowym 
+      np. /home/nazwa_uzytkownika/, wowczas kazda komende musisz poprzedzic poleceniem "sudo": `*
+
+        sudo curl -s https://getcomposer.org/installer | sudo php
+
+    .. todo: wspomniec o zasadach bezpieczenstwa i instalacji w katalogu domowym
  
- 3. Przenies i wypakuj standardowe pakiety / bundle frameworka `nowy_projekt/vendor/vendor.zip` do folderu 
-	`/usr/share/php/vendor/` ( katalogi o `share/php/vendor/` najpewniej trzeba bedzie utworzyc )
-    
-    *`UWAGA: mozesz pominac ten krok, jezeli zrobiles to w poprzedniej instalacji pakietu symfony2.2-starter`*
-		
-        sudo mv nowy_projekt/vendor/vendor.zip /usr/share/php/vendor/
-		cd /usr/share/php/vendor/
-        sudo unzip vendor.zip
+ 2. Generujemy katalog na projekty Symfony2 przy pomocy Composera
 
- 4. Mozesz usunac plik vendor.zip ( /usr/share/php/vendor/vendor.zip )
+        php composer.phar create-project enetwiz/symfony2.2-starter /var/www/sf2-2projects --stability=dev
 
- Zwroc rowniez uwage na to, ze w katalogu `nowy_projekt/vendor/` umieszczone zostaly linki symboliczne do podstawowych 
- pakietow Symfony2. Dzieki temu nie powielamy standardowych bundli w srodowisku developerskim ( jak rowniez i w 
- systemach kontroli wersji ), a kazdy kolejny zalozony przez nas projekt moze bez przeszkod z nich korzystac. Podobne 
- rozwiazanie warto zastosowac na serwerze produkcyjnym.
+    Na pytanie instalatora > "Do you want to remove the exisitng VCS (.git, .svn.)" odpowiedz twierdzaco. Dzieki temu 
+    pozbedziesz sie zbednego katalogu '.git'.
 
-
-
-Tworzenie nowego projektu / aplikacji
------------------
-
-TODO: opisz
+    .. todo: dopisz informacje o modyfikacji composer.json
 
 
 
 Konfiguracja serwera
------------------
+--------------------
 
- *`UWAGA: mozesz pominac ten krok, jezeli zrobiles to w poprzedniej instalacji pakietu symfony2.2-starter`*
+ *`UWAGA: mozesz pominac te sekcje, jezeli zrobiles to w poprzedniej instalacji pakietu symfony2.2-starter`*
 
 Podstawa do uruchomienia projektu Symfony 2.2 jest odpowiednia konfiguracja serwera. Koniecznie nalezy wlaczyc modul 
 `rewrite` ( umozliwi nam poprawne mapowanie adresow ). Nalezy rowniez dokonac zmian w konfiguracyjnym `PHP.ini`. 
@@ -92,8 +94,9 @@ Niezbedna moze okazac sie rowniez [konfiguracja wirtualnych hostow](#konfiguracj
 
 **Konfiguracja PHP**
 
-Uruchom adres [http://localhost/nowy_projekt/web/config.php](http://localhost/nowy_projekt/web/config.php) w przegladarce 
-aby zidentyfikowac typowe problemy konfiguracyjne.
+Uruchom adres 
+[http://localhost/sf2-2projects/project1/web/config.php](http://localhost/sf2-2projects/project1/web/config.php) 
+w przegladarce aby zidentyfikowac typowe problemy konfiguracyjne.
 W tym momencie powinienes rozwiazac wszystkie bledy z sekcji **Major problems** - bez wykonania tego kroku aplikacja SF2 
 najprawdopodobniej nie bedzie dzialac poprawnie.
 
@@ -101,7 +104,7 @@ najprawdopodobniej nie bedzie dzialac poprawnie.
 **Instalacja rozszerzenia "intl" (internacjonalizacja)**
  
 Mimo, że rozszerzenie `intl` nie nalezy do modułów wymaganych nalezy rowniez je zainstalowac w Twojej wersji PHP, 
-poniewaz bez niego *NIE zadziała* pakiet SonataUserBundle. Aby zainstalować to rozszerzenie wydaj polecenie:
+poniewaz bez niego *NIE zadziała* pakiet `SonataUserBundle`. Aby zainstalować to rozszerzenie wydaj w konsoli polecenie:
 
         sudo apt-get install php5-intl
 
@@ -116,21 +119,27 @@ terminalu:
 
 
 
+Tworzenie nowego projektu / aplikacji
+-------------------------------------
+
+TODO: opisz
+
+
 Aplikacje i system Bundle'i
------------------
+---------------------------
 
 TODO: opisac jak to jest z kilkoma aplikacjami projaktami
 
 
 
 Konfiguracja VirtualHost
------------------
+------------------------
 
 TODO: dokoncz - mozna to wyodrebnic do innej sekcji bo virtuale definiujemy za kazdym razem
 
 
 Composer - manager pakietow
------------------
+---------------------------
 
 Do projektu zostal automatycznie dolaczony manager pakietow, ktory pozwala na sprawne dolaczanie bundle'i wraz z 
 pakietami zaleznymi do naszego projektu. Wiecej informacji o tym jak uzywac Composera znajdziesz 
@@ -146,7 +155,7 @@ TODO: napisz o wyrzucaniu .git i gitignore
 
 
 Less
------------------
+----
 
 Z uwagi na to ze domyslnie dolaczana paczka tj. `TwitterBoostrap` posiada pliki zgodne z LESS ( 
 [więcej o LESS](http://ciembor.github.com/lesscss.org/) ) zalecam zainstalowanie kompilatora plikow LESS tj. `Nodejs` 
@@ -164,13 +173,13 @@ kompilator.
 
 
 Zarządzanie użytkownikami
------------------
+-------------------------
 TODO: app/console doctrine:schema:update --force
 TODO: app/console fos:user:create --super-admin
 
 
 Znane problemy
------------------
+--------------
 TODO: linki symboliczne (dowiazania) i windows
 
 

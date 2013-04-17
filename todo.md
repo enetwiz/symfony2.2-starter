@@ -17,3 +17,7 @@ TODO: zainstaluj > https://packagist.org/packages/doctrine/doctrine-fixtures-bun
 TODO: zainstaluj initializr
 
 TODO: cos nie dziala httaccess
+
+TODO: zautomatyzowac dopisywanie komend do composer.json (chodzi o scripts)
+
+TODO: composer.json - ustaw jakies stabilne wersje zamist dev-master bo nie paczki moga byc ciagniete z cache przeciez
