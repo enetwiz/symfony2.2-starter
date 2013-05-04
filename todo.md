@@ -14,10 +14,19 @@ EOF TODO
 
 TODO: zainstaluj > https://packagist.org/packages/doctrine/doctrine-fixtures-bundle
 
-TODO: zainstaluj initializr
+TODO: zainstaluj initializr (zerknij na: http://knpbundles.com/Oryzone/OryzoneBoilerplateBundle)
 
 TODO: cos nie dziala httaccess
 
 TODO: zautomatyzowac dopisywanie komend do composer.json (chodzi o scripts)
 
 TODO: composer.json - ustaw jakies stabilne wersje zamist dev-master bo nie paczki moga byc ciagniete z cache przeciez
+
+TODO: alternatywa dla SonataAdmin https://github.com/Abhoryo/APYDataGridBundle/blob/master/README.md
+
+TODO: napisac o app/check.php (sprawdzanie instalacji)
+FIX: app/check.php - wystepuja bledy z powodu zmiany polozenia
+
+Kanal SF
+~~~~~~~~
+#symfony irc.freenode.net
